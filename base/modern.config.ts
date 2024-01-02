@@ -5,7 +5,8 @@ import { garfishPlugin } from '@modern-js/plugin-garfish';
 // https://modernjs.dev/en/configure/app/usage
 export default defineConfig<'rspack'>({
   runtime: {
-    router: false,
+    router: true,
+    state: false,
     masterApp: {
       apps: [
         {
@@ -18,13 +19,14 @@ export default defineConfig<'rspack'>({
   },
   source: {
     alias: {
+      react: path.dirname(require.resolve('react')),
       'react-router': path.join('node_modules', 'react-router'),
       'react-router-dom': path.join('node_modules', 'react-router-dom'),
     },
   },
   output: {
     disableTsChecker: true,
-    disableMinimize: true
+    disableMinimize: true,
   },
   plugins: [
     appTools({
